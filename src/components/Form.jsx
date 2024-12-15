@@ -1,5 +1,5 @@
 import { useState } from "react";
-import send from "./assets/send.svg";
+import send from "../assets/send.svg";
 
 const Form = (props) => {
     const [text, setText] = useState("");
@@ -18,7 +18,7 @@ const Form = (props) => {
     };
 
     return (
-        <form className="min-w-full flex">
+        <form className="w-full flex">
             <input
                 className="w-full border-2 border-violet-600 rounded-s-md p-3 focus:outline-none"
                 onInput={handleInput}
