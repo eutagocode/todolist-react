@@ -1,10 +1,25 @@
 import { useEffect, useState } from "react";
-import Item from "./ItemModel";
-import List from "./List";
-import Form from "./Form";
+import Item from "./components/ItemModel";
+import List from "./components/List";
+import Form from "./components/Form";
 
 const Todo = () => {
+    const SAVED_ITEMS = "SAVED_ITEMS";
     const [items, setItems] = useState([]);
+    const [isInitialized, setIsInitialized] = useState(false);
+
+    useEffect(() => {
+        let savedItems = JSON.parse(localStorage.getItem(SAVED_ITEMS) || "[]");
+
+        if (savedItems) setItems(savedItems);
+
+        setIsInitialized(true);
+    }, []);
+
+    useEffect(() => {
+        if (isInitialized)
+            localStorage.setItem(SAVED_ITEMS, JSON.stringify(items));
+    }, [items, isInitialized]);
 
     const onAddItem = (text) => {
         const item = new Item(text);
@@ -30,7 +45,7 @@ const Todo = () => {
     };
 
     return (
-        <div className="container mx-auto mt-9 flex flex-col gap-4">
+        <div className="container mx-auto mt-9 flex flex-col gap-4 px-4 sm:px-0">
             <h1 className="text-center font-bold uppercase text-3xl">
                 To Do List
             </h1>
