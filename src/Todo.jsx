@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Item from "./components/ItemModel";
 import List from "./components/List";
 import Form from "./components/Form";
+import Add from "./components/Add";
+import Modal from "./components/Modal";
 
 const Todo = () => {
     const SAVED_ITEMS = "SAVED_ITEMS";
@@ -56,6 +58,8 @@ const Todo = () => {
                 onItemDeleted={onItemDeleted}
                 items={items}
             ></List>
+            <Add></Add>
+            <Modal></Modal>
         </div>
     );
 };
