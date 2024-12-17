@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Item from "./components/ItemModel";
 import List from "./components/List";
-import Form from "./components/Form";
+import SearchItem from "./components/SearchItem";
 import Add from "./components/Add";
-import Modal from "./components/Modal";
 
 const Todo = () => {
     const SAVED_ITEMS = "SAVED_ITEMS";
     const [items, setItems] = useState([]);
+    const [filteredItems, setFilteredItems] = useState([]);
     const [isInitialized, setIsInitialized] = useState(false);
 
     useEffect(() => {
@@ -51,15 +51,17 @@ const Todo = () => {
             <h1 className="text-center font-bold uppercase text-3xl">
                 To Do List
             </h1>
-            <Form onAddItem={onAddItem}></Form>
+            <SearchItem
+                setFilteredItems={setFilteredItems}
+                items={items}
+            ></SearchItem>
             <hr className="h-[1px] w-full bg-slate-300" />
             <List
                 onDone={onDone}
                 onItemDeleted={onItemDeleted}
-                items={items}
+                items={filteredItems.length > 0 ? filteredItems : items}
             ></List>
-            <Add></Add>
-            <Modal></Modal>
+            <Add onAddItem={onAddItem}></Add>
         </div>
     );
 };
