@@ -14,7 +14,7 @@ const CreateItem = (props) => {
             />
             <button
                 onClick={props.handleShowModal}
-                className="w-full h-11 bg-violet-500 text-white rounded-md hover:bg-violet-600 transition-colors uppercase font-bold"
+                className="w-full h-16 sm:h-11 bg-violet-500 text-white rounded-md hover:bg-violet-600 transition-colors uppercase font-bold"
             >
                 Adicionar
             </button>
